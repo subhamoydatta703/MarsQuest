@@ -88,4 +88,4 @@ A matching config is already included in [`vercel.json`](./vercel.json).
 
 ## Project Vision
 
-Journey to Mars turns a normal project page into an interactive mission. Instead of explaining space travel with static blocks of text, it lets the user feel the arc of launch, transit, and landing through motion, telemetry, and immersive visuals.
+Journey to Mars is basically an animated storytelling website. It presents the journey from Earth to Mars through motion, telemetry, transitions, and immersive visuals instead of static sections.
