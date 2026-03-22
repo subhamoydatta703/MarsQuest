@@ -16,7 +16,8 @@ export default function SectionMartianDescent() {
       scrollTrigger: {
         trigger: container.current,
         end: 'bottom bottom',
-        scrub: 2
+        scrub: 2.2,
+        invalidateOnRefresh: true
       }
     });
 
@@ -52,14 +53,14 @@ export default function SectionMartianDescent() {
   }, { scope: container });
 
   return (
-    <section ref={container} className="relative w-full h-[150vh] flex flex-col items-center justify-start pt-24 overflow-hidden z-30 bg-gradient-to-b from-transparent via-[#401000]/80 to-[#B73D1E]/40">
+    <section ref={container} className="relative w-full h-[150vh] flex flex-col items-center justify-start pt-20 sm:pt-24 overflow-hidden z-30 bg-gradient-to-b from-transparent via-[#401000]/80 to-[#B73D1E]/40">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_#E25A38_0%,_transparent_60%)] opacity-20 pointer-events-none" />
 
-      <div className="relative z-50 w-[45vw] md:w-[40vw] lg:max-w-lg p-4 lg:p-8 text-right flex flex-col items-end pt-[5vh] ml-auto md:mr-8 lg:mr-16">
-        <h2 className="text-sm text-mars-500 font-mono tracking-widest uppercase mb-4 animate-pulse bg-black/60 px-4 py-1 rounded-full backdrop-blur-md shadow-[0_0_20px_rgba(226,90,56,0.6)]">
+      <div className="relative z-50 w-full max-w-xl md:w-[40vw] lg:max-w-lg p-4 sm:p-6 lg:p-8 text-left md:text-right flex flex-col items-start md:items-end pt-[5vh] ml-auto md:mr-8 lg:mr-16">
+        <h2 className="text-xs sm:text-sm text-mars-500 font-mono tracking-[0.25em] uppercase mb-4 animate-pulse bg-black/60 px-4 py-1 rounded-full backdrop-blur-md shadow-[0_0_20px_rgba(226,90,56,0.6)]">
           Deceleration Burn Commencing
         </h2>
-        <h3 className="text-5xl md:text-7xl font-bold font-sans drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)] text-white mb-8">
+        <h3 className="text-4xl sm:text-5xl md:text-7xl font-bold font-sans drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)] text-white mb-8">
           Martian Descent
         </h3>
         
@@ -91,7 +92,7 @@ export default function SectionMartianDescent() {
             <p className="text-sm text-gray-300 leading-relaxed mb-3">
               Mars — the fourth stone from the Sun. A world of rust-red deserts, towering volcanoes, and canyon systems that dwarf the Grand Canyon.
             </p>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               <div className="flex flex-col bg-black/30 rounded-lg p-2">
                 <span className="text-gray-500 uppercase tracking-wider">Diameter</span>
                 <span className="font-mono text-white">6,779 km</span>
@@ -126,7 +127,7 @@ export default function SectionMartianDescent() {
         </div>
       </div>
       <div 
-        className="realistic-mars absolute -bottom-[120vw] left-1/2 -translate-x-1/2 w-[220vw] h-[220vw] md:w-[150vw] md:h-[150vw] rounded-[100%] z-0 
+        className="realistic-mars absolute -bottom-[130vw] sm:-bottom-[125vw] md:-bottom-[120vw] left-1/2 -translate-x-1/2 w-[250vw] h-[250vw] sm:w-[220vw] sm:h-[220vw] md:w-[150vw] md:h-[150vw] rounded-[100%] z-0 
                    shadow-[inset_0_-150px_350px_rgba(0,0,0,0.9),inset_0_40px_100px_rgba(255,100,0,0.3)] 
                    overflow-hidden contrast-125 saturate-[1.2] will-change-transform"
         style={{
@@ -139,9 +140,9 @@ export default function SectionMartianDescent() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(255,150,50,0.2)_0%,_transparent_60%)] mix-blend-screen pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,_rgba(0,0,0,1)_0%,_transparent_75%)] pointer-events-none" />
       </div>
-      <div className="landing-ui-panel absolute bottom-[25vh] md:bottom-[30vh] left-1/2 -translate-x-1/2 w-11/12 max-w-2xl bg-white/5 backdrop-blur-md rounded-2xl border border-white/20 p-6 z-40 shadow-[0_20px_50px_rgba(0,0,0,0.5)] opacity-0 pointer-events-none">
-        <div className="flex justify-between items-center mb-6 border-b border-blue-500/30 pb-4 relative overflow-hidden">
-          <h3 className="text-xl md:text-2xl font-mono uppercase tracking-widest text-blue-400">Touchdown Confirmed</h3>
+      <div className="landing-ui-panel absolute bottom-[18vh] sm:bottom-[22vh] md:bottom-[30vh] left-1/2 -translate-x-1/2 w-[calc(100%-1.5rem)] sm:w-11/12 max-w-2xl bg-white/5 backdrop-blur-md rounded-2xl border border-white/20 p-4 sm:p-6 z-40 shadow-[0_20px_50px_rgba(0,0,0,0.5)] opacity-0 pointer-events-none">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6 border-b border-blue-500/30 pb-4 relative overflow-hidden">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-mono uppercase tracking-[0.2em] text-blue-400">Touchdown Confirmed</h3>
           <div className="flex items-center gap-3">
              <span className="text-[10px] text-gray-400 font-mono tracking-widest uppercase">Systems Nominal</span>
              <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse shadow-[0_0_15px_#22c55e]" />
@@ -150,7 +151,7 @@ export default function SectionMartianDescent() {
           <div className="landing-scanline absolute top-0 left-0 w-full h-0 bg-blue-500/10 mix-blend-screen" />
         </div>
         
-        <div className="grid grid-cols-2 gap-y-6 gap-x-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 sm:gap-y-6 gap-x-4">
           <div className="landing-stat flex flex-col">
             <span className="text-[10px] uppercase tracking-[0.2em] text-blue-500/80 mb-1 font-bold">Landing Coordinates</span>
             <span className="font-mono text-white text-sm md:text-lg">18.4°N 77.5°E</span>

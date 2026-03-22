@@ -50,9 +50,9 @@ export default function SectionAtmosphericBreach() {
   }, { scope: container });
 
   return (
-    <section ref={container} className="relative w-full h-[150vh] flex items-center justify-start p-8 md:p-24 z-10 overflow-visible -mt-[20vh]">
+    <section ref={container} className="relative w-full h-[150vh] flex items-center justify-start px-4 py-16 sm:px-6 md:p-24 z-10 overflow-visible -mt-[12vh] md:-mt-[20vh]">
       <div 
-        className="moon-graphic absolute top-[20%] -right-[10vw] w-[50vw] h-[50vw] rounded-full z-0 overflow-hidden bg-[#111]
+        className="moon-graphic absolute top-[14%] -right-[22vw] w-[70vw] h-[70vw] sm:top-[18%] sm:-right-[14vw] sm:w-[58vw] sm:h-[58vw] md:top-[20%] md:-right-[10vw] md:w-[50vw] md:h-[50vw] rounded-full z-0 overflow-hidden bg-[#111]
                    shadow-[inset_-30px_-30px_100px_rgba(0,0,0,0.9),0_0_40px_rgba(255,255,255,0.1)] will-change-transform"
         style={{
           backgroundImage: "url('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/moon_1024.jpg')",
@@ -65,25 +65,25 @@ export default function SectionAtmosphericBreach() {
          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_40%,_transparent_0%,_rgba(0,0,0,0.8)_80%,_rgba(0,0,0,0.95)_100%)] pointer-events-none" />
       </div>
 
-      <div className="max-w-2xl z-10 relative md:ml-[300px]">
-        <h2 className="breach-text text-4xl md:text-6xl font-light mb-8 drop-shadow-xl">
+      <div className="max-w-2xl z-10 relative w-full pt-28 sm:pt-16 md:pt-0 md:ml-[300px]">
+        <h2 className="breach-text text-3xl sm:text-4xl md:text-6xl font-light mb-6 md:mb-8 drop-shadow-xl">
           Lunar Flyby.<br />
           <span className="text-gray-300 font-bold italic">Leaving the cradle.</span>
         </h2>
-        <p className="breach-text text-lg md:text-xl text-gray-400 leading-relaxed max-w-xl backdrop-blur-sm p-4 rounded-xl border border-white/5 bg-black/20 mb-6">
+        <p className="breach-text text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed max-w-xl backdrop-blur-sm p-4 rounded-xl border border-white/5 bg-black/20 mb-6">
           As the roar of the engines fades into the silent hum of the void, Earth's gravity releases its grip. The moon passes by in silence — our last familiar neighbor before the vast excursion into the unknown.
         </p>
         
-        <div className="breach-text grid grid-cols-3 gap-4 border border-white/10 bg-black/40 rounded-xl p-4 backdrop-blur-md">
+        <div className="breach-text grid grid-cols-1 sm:grid-cols-3 gap-4 border border-white/10 bg-black/40 rounded-xl p-4 backdrop-blur-md">
           <div className="flex flex-col">
              <span className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Lunar Distance</span>
              <span className="font-mono text-sm text-white">384,400 km</span>
           </div>
-          <div className="flex flex-col border-l border-white/10 pl-4">
+          <div className="flex flex-col border-t pt-4 sm:pt-0 sm:border-t-0 border-white/10 sm:border-l sm:pl-4">
              <span className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Gravity Assist</span>
              <span className="font-mono text-sm text-green-400">+1.2 km/s</span>
           </div>
-          <div className="flex flex-col border-l border-white/10 pl-4">
+          <div className="flex flex-col border-t pt-4 sm:pt-0 sm:border-t-0 border-white/10 sm:border-l sm:pl-4">
              <span className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Surface Temp</span>
              <span className="font-mono text-sm text-white">-173°C to 127°C</span>
           </div>

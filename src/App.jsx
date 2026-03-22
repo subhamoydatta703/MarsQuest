@@ -13,18 +13,39 @@ import SectionAntigravityVoid from './components/SectionAntigravityVoid';
 import SectionMartianDescent from './components/SectionMartianDescent';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.config({ force3D: true });
 
 function App() {
   const mainRef = useRef(null);
   const [introComplete, setIntroComplete] = useState(false);
+  const getRocketRestState = () => {
+    const isMobile = window.innerWidth < 768;
+
+    return {
+      restY: isMobile ? '4vh' : '12vh',
+      touchDownY: isMobile ? '4vh' : '12vh',
+      bounceY: isMobile ? '5vh' : '13vh',
+      scale: isMobile ? 0.25 : 0.3,
+    };
+  };
 
   useEffect(() => {
+    const rocketRestState = getRocketRestState();
+
     if (!introComplete) {
       document.body.style.overflow = 'hidden';
       window.scrollTo(0, 0);
       gsap.set('.launchpad-dashboard', { opacity: 0, y: 60 });
       gsap.set('.journey-hud', { opacity: 0, x: -60 });
-      gsap.set('.cinematic-rocket', { opacity: 0, y: '12vh', x: '0vw', xPercent: -50, yPercent: -50, rotation: 0, scale: 0.3 });
+      gsap.set('.cinematic-rocket', {
+        opacity: 0,
+        y: rocketRestState.restY,
+        x: '0vw',
+        xPercent: -50,
+        yPercent: -50,
+        rotation: 0,
+        scale: rocketRestState.scale
+      });
     } else {
       document.body.style.overflow = 'auto';
       ScrollTrigger.refresh();
@@ -36,16 +57,26 @@ function App() {
   }, [introComplete]);
 
   useGSAP(() => {
+    const rocketRestState = getRocketRestState();
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: mainRef.current,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 2.5
+        scrub: 2,
+        invalidateOnRefresh: true,
+        fastScrollEnd: true
       }
     });
 
-    gsap.set('.cinematic-rocket', { scale: 0.3, y: '12vh', x: '0vw', xPercent: -50, yPercent: -50 });
+    gsap.set('.cinematic-rocket', {
+      scale: rocketRestState.scale,
+      y: rocketRestState.restY,
+      x: '0vw',
+      xPercent: -50,
+      yPercent: -50
+    });
     tl.to('.journey-hud', { opacity: 1, y: 0, duration: 0.05 }, 0);
 
     tl.to('.rocket-exhaust', { opacity: 1, scaleY: 1, duration: 0.1 }, 0);
@@ -89,9 +120,9 @@ function App() {
     tl.to(metrics, { vel: 3.5, duration: 0.2, ease: 'none' }, 0.75);
 
     tl.to('.rocket-exhaust', { opacity: 0, scaleY: 0, duration: 0.03 }, 0.92);
-    tl.to('.cinematic-rocket', { y: '12vh', scale: 0.7, duration: 0.03 }, 0.92);
-    tl.to('.cinematic-rocket', { scaleY: 0.65, scaleX: 0.72, y: '13vh', duration: 0.02 }, 0.95);
-    tl.to('.cinematic-rocket', { scaleY: 0.7, scaleX: 0.7, y: '12vh', duration: 0.03 }, 0.97);
+    tl.to('.cinematic-rocket', { y: rocketRestState.touchDownY, scale: 0.7, duration: 0.03 }, 0.92);
+    tl.to('.cinematic-rocket', { scaleY: 0.65, scaleX: 0.72, y: rocketRestState.bounceY, duration: 0.02 }, 0.95);
+    tl.to('.cinematic-rocket', { scaleY: 0.7, scaleX: 0.7, y: rocketRestState.touchDownY, duration: 0.03 }, 0.97);
     tl.to('.hud-status-light', { backgroundColor: '#3b82f6', duration: 0.05 }, 0.95);
     tl.to('.hud-status-text', { textContent: 'Touchdown Confirmed', duration: 0.05 }, 0.95);
     tl.to('.landing-ui-panel', { opacity: 1, duration: 0.03 }, 0.92);

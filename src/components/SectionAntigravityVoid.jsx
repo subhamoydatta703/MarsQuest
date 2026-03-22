@@ -8,16 +8,24 @@ export default function SectionAntigravityVoid() {
 
   useGSAP(() => {
     let sections = gsap.utils.toArray('.void-panel');
-    
-    gsap.to(sections, {
+
+    const panelScroll = gsap.to(sections, {
+      id: 'void-scroll',
       xPercent: -100 * (sections.length - 1),
-      ease: "none",
+      ease: 'none',
       scrollTrigger: {
         trigger: container.current,
         pin: true,
-        scrub: 1.5,
-        snap: 1 / (sections.length - 1),
-        end: () => "+=" + scrollContainer.current.offsetWidth,
+        scrub: 2,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        snap: {
+          snapTo: 1 / (sections.length - 1),
+          duration: { min: 0.2, max: 0.5 },
+          ease: 'power1.inOut',
+          inertia: false
+        },
+        end: () => '+=' + scrollContainer.current.offsetWidth,
         onLeave: () => gsap.to(container.current, { autoAlpha: 0, duration: 0.2 }),
         onEnterBack: () => gsap.to(container.current, { autoAlpha: 1, duration: 0.2 })
       }
@@ -30,7 +38,8 @@ export default function SectionAntigravityVoid() {
         trigger: container.current,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 2
+        scrub: 2.5,
+        invalidateOnRefresh: true
       }
     });
 
@@ -45,7 +54,7 @@ export default function SectionAntigravityVoid() {
           trigger: card.closest('.void-panel'),
           start: 'left center',
           end: 'right center',
-          containerAnimation: gsap.getById?.('void-scroll'),
+          containerAnimation: panelScroll,
           toggleActions: 'play none none reverse'
         }
       });
@@ -65,9 +74,9 @@ export default function SectionAntigravityVoid() {
         <div className="absolute top-[40%] left-[250vw] w-8 h-8 bg-gray-500/50 blur-[2px] rounded-full asteroid-fast z-0" />
 
         <div className="void-panel w-screen h-full flex flex-col items-center justify-center p-4 lg:p-8 relative">
-          <div className="absolute right-4 md:right-8 lg:right-16 w-[45vw] md:w-[40vw] max-w-md z-10 p-4 lg:p-8 bg-black/40 border border-white/5 rounded-2xl backdrop-blur-sm">
-            <h2 className="text-5xl md:text-7xl font-bold mb-4 tracking-tight">The Void</h2>
-            <p className="text-xl text-gray-400 mb-6">
+          <div className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto right-auto md:right-8 lg:right-16 w-[calc(100%-2rem)] sm:w-[28rem] md:w-[40vw] max-w-md z-10 p-4 lg:p-8 bg-black/40 border border-white/5 rounded-2xl backdrop-blur-sm">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 tracking-tight">The Void</h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-6">
               Cruising at 24,000 km/h. The silence is absolute. 140 million miles of nothingness separates origin and destination.
             </p>
             <div className="bg-white/5 p-4 rounded-lg border border-white/10 flex flex-col gap-2">
@@ -97,7 +106,7 @@ export default function SectionAntigravityVoid() {
         </div>
 
         <div className="void-panel w-screen h-full flex items-center justify-center p-4 lg:p-8 relative">
-          <div className="absolute right-4 md:right-8 lg:right-16 w-[45vw] md:w-[40vw] max-w-md bg-space-800/40 backdrop-blur-lg border border-white/10 rounded-2xl p-4 lg:p-8 shadow-2xl z-10">
+          <div className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto right-auto md:right-8 lg:right-16 w-[calc(100%-2rem)] sm:w-[28rem] md:w-[40vw] max-w-md bg-space-800/40 backdrop-blur-lg border border-white/10 rounded-2xl p-4 lg:p-8 shadow-2xl z-10">
             <h3 className="text-xl font-mono uppercase tracking-widest text-accent mb-6 border-b border-white/10 pb-4">
               Autonomous Navigation Active
             </h3>
@@ -124,7 +133,7 @@ export default function SectionAntigravityVoid() {
               <p className="text-xs text-gray-400 leading-relaxed mb-2">
                 Our trajectory follows a Hohmann transfer ellipse — the most fuel-efficient path between two circular orbits. Two precise engine burns: one to leave Earth's orbit, one to enter Mars'.
               </p>
-              <div className="grid grid-cols-3 gap-2 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
                 <div className="flex flex-col bg-black/30 rounded-lg p-2">
                   <span className="text-gray-500 uppercase tracking-wider">Delta-V Total</span>
                   <span className="font-mono text-white">3.6 km/s</span>
@@ -149,17 +158,17 @@ export default function SectionAntigravityVoid() {
         </div>
 
         <div className="void-panel w-screen h-full flex flex-col items-center justify-center p-4 lg:p-8 relative">
-          <div className="absolute right-4 md:right-8 lg:right-16 text-right w-[45vw] md:w-[40vw] max-w-md z-10">
+          <div className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto right-auto md:right-8 lg:right-16 text-left md:text-right w-[calc(100%-2rem)] sm:w-[28rem] md:w-[40vw] max-w-md z-10">
             <div className="inline-block px-4 py-1 rounded-full border border-mars-500 text-mars-500 text-sm uppercase tracking-widest mb-6 bg-black/50 backdrop-blur-sm">
               Gravity Well Detected
             </div>
-            <h2 className="text-4xl md:text-6xl font-light mb-4 text-shadow-lg">Entering the <span className="font-bold text-mars-500">Red Line</span></h2>
-            <p className="text-lg text-gray-400 max-w-xl mx-auto mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-light mb-4 text-shadow-lg">Entering the <span className="font-bold text-mars-500">Red Line</span></h2>
+            <p className="text-base sm:text-lg text-gray-400 max-w-xl md:mx-auto mb-8">
               After 210 days of silence, a rust-colored marble emerges from the darkness. What was once a pixel is now a world.
             </p>
             
             <div className="void-story-card bg-white/5 backdrop-blur-md border border-mars-500/20 rounded-2xl p-6 w-full shadow-[0_8px_32px_rgba(226,90,56,0.15)] ml-auto">
-              <blockquote className="text-gray-300 italic text-lg leading-relaxed mb-3">
+              <blockquote className="text-gray-300 italic text-base sm:text-lg leading-relaxed mb-3">
                 "For all its material advantages, the sedentary life has left us edgy, unfulfilled. Even after 400 generations in villages and cities, we haven't forgotten. The open road still softly calls."
               </blockquote>
               <cite className="text-xs text-mars-500 font-mono tracking-widest">— Carl Sagan, Pale Blue Dot</cite>

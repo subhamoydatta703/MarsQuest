@@ -5,11 +5,25 @@ import gsap from 'gsap';
 export default function SectionLaunchpad() {
   const container = useRef(null);
   const dashboard = useRef(null);
+  const rotateXToRef = useRef(null);
+  const rotateYToRef = useRef(null);
   const [timerText, setTimerText] = useState('00:00:00');
   const [isLaunched, setIsLaunched] = useState(false);
   const launchTimeRef = useRef(null);
 
   useGSAP(() => {
+    rotateXToRef.current = gsap.quickTo(dashboard.current, 'rotateX', {
+      duration: 0.35,
+      ease: 'power3.out',
+      overwrite: 'auto'
+    });
+
+    rotateYToRef.current = gsap.quickTo(dashboard.current, 'rotateY', {
+      duration: 0.35,
+      ease: 'power3.out',
+      overwrite: 'auto'
+    });
+
     gsap.to('.realistic-earth', {
       y: '20vh',
       ease: 'none',
@@ -17,7 +31,8 @@ export default function SectionLaunchpad() {
         trigger: container.current,
         start: 'top top',
         end: 'bottom top',
-        scrub: 2
+        scrub: 1.5,
+        invalidateOnRefresh: true
       }
     });
 
@@ -29,7 +44,8 @@ export default function SectionLaunchpad() {
         trigger: container.current,
         start: 'top top',
         end: 'bottom top',
-        scrub: 2
+        scrub: 1.5,
+        invalidateOnRefresh: true
       }
     });
 
@@ -79,16 +95,12 @@ export default function SectionLaunchpad() {
   }, [isLaunched]);
 
   const handleMouseMove = (e) => {
-    if (!dashboard.current) return;
+    if (!dashboard.current || !rotateXToRef.current || !rotateYToRef.current) return;
     const { left, top, width, height } = dashboard.current.getBoundingClientRect();
     const x = (e.clientX - left - width / 2) / 10;
     const y = (e.clientY - top - height / 2) / 10;
-    gsap.to(dashboard.current, {
-      rotateY: x,
-      rotateX: -y,
-      duration: 0.5,
-      ease: 'power2.out'
-    });
+    rotateYToRef.current(x);
+    rotateXToRef.current(-y);
   };
 
   const handleMouseLeave = () => {
@@ -99,7 +111,7 @@ export default function SectionLaunchpad() {
   return (
     <section 
       ref={container} 
-      className="relative w-full h-[150vh] flex flex-col items-center pt-[15vh] overflow-visible bg-transparent"
+      className="relative w-full h-[150vh] flex flex-col items-center pt-[34vh] sm:pt-[28vh] md:pt-[15vh] overflow-visible bg-transparent"
       style={{ perspective: 1000 }}
     >
       <div className="launch-trigger absolute top-0 w-full h-1" />
@@ -108,7 +120,7 @@ export default function SectionLaunchpad() {
         ref={dashboard}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="launchpad-dashboard relative z-30 w-11/12 max-w-2xl bg-[#09101f]/80 backdrop-blur-xl border border-blue-500/20 rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,100,255,0.15)] cursor-crosshair transform-gpu flex flex-col gap-6"
+        className="launchpad-dashboard relative z-30 w-[calc(100%-1.5rem)] sm:w-11/12 max-w-2xl bg-[#09101f]/80 backdrop-blur-xl border border-blue-500/20 rounded-3xl p-4 sm:p-6 md:p-8 shadow-[0_20px_50px_rgba(0,100,255,0.15)] cursor-crosshair transform-gpu flex flex-col gap-4 sm:gap-6"
         style={{ transformStyle: 'preserve-3d' }}
       >
         <div className="flex justify-between items-end border-b border-blue-500/20 pb-4">
@@ -116,17 +128,17 @@ export default function SectionLaunchpad() {
             Launch Subsystems
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="bg-black/40 rounded-xl p-4 border border-blue-500/10">
             <div className="text-xs text-blue-400 uppercase tracking-wider mb-2">Main Engine Thrust</div>
-            <div className="text-2xl font-mono text-white">104.5%</div>
+            <div className="text-xl sm:text-2xl font-mono text-white">104.5%</div>
             <div className="w-full h-1 bg-white/10 mt-2 rounded-full overflow-hidden">
                <div className="w-full h-full bg-blue-500 animate-pulse" />
             </div>
           </div>
           <div className="bg-black/40 rounded-xl p-4 border border-blue-500/10">
             <div className="text-xs text-blue-400 uppercase tracking-wider mb-2">G-Force</div>
-            <div className="text-2xl font-mono text-white">{isLaunched ? '3.2 G' : '1.0 G'}</div>
+            <div className="text-xl sm:text-2xl font-mono text-white">{isLaunched ? '3.2 G' : '1.0 G'}</div>
             <div className="w-full h-1 bg-white/10 mt-2 rounded-full overflow-hidden">
                <div className={`h-full bg-blue-500 transition-all duration-1000 ${isLaunched ? 'w-3/4' : 'w-1/4'}`} />
             </div>
@@ -134,7 +146,7 @@ export default function SectionLaunchpad() {
         </div>
       </div>
 
-      <div className="absolute bottom-[38%] right-6 md:right-16 lg:right-32 z-20 flex flex-col gap-4 max-w-sm">
+      <div className="absolute bottom-[34%] sm:bottom-[36%] md:bottom-[40%] left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:right-16 lg:right-32 z-20 flex flex-col gap-4 max-w-sm w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] md:w-auto">
         <div className="earth-story-card bg-white/5 backdrop-blur-md border border-blue-400/20 rounded-2xl p-5 shadow-[0_8px_32px_rgba(0,100,200,0.15)]">
           <h3 className="text-xs text-blue-400 font-mono uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
@@ -174,7 +186,7 @@ export default function SectionLaunchpad() {
         </div>
       </div>
       <div 
-        className="realistic-earth absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[60%] w-[250vw] h-[250vw] sm:w-[150vw] sm:h-[150vw] rounded-[100%] z-0 
+        className="realistic-earth absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[60%] w-[260vw] h-[260vw] sm:w-[180vw] sm:h-[180vw] md:w-[150vw] md:h-[150vw] rounded-[100%] z-0 
                    shadow-[inset_0_40px_100px_rgba(0,20,50,0.9),inset_0_-40px_200px_rgba(0,0,0,0.9),0_-20px_80px_rgba(50,150,255,0.4)] 
                    overflow-hidden border-t sm:border-t-2 border-blue-400/50 bg-[#020510] will-change-transform"
         style={{
