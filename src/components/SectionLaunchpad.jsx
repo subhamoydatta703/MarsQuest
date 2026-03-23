@@ -31,7 +31,7 @@ export default function SectionLaunchpad() {
         trigger: container.current,
         start: 'top top',
         end: 'bottom top',
-        scrub: 1.5,
+        scrub: 1,
         invalidateOnRefresh: true
       }
     });
@@ -44,7 +44,7 @@ export default function SectionLaunchpad() {
         trigger: container.current,
         start: 'top top',
         end: 'bottom top',
-        scrub: 1.5,
+        scrub: 1,
         invalidateOnRefresh: true
       }
     });
@@ -111,7 +111,7 @@ export default function SectionLaunchpad() {
   return (
     <section 
       ref={container} 
-      className="relative w-full h-[150vh] flex flex-col items-center pt-[34vh] sm:pt-[28vh] md:pt-[15vh] overflow-visible bg-transparent"
+      className="relative w-full min-h-[150vh] flex flex-col items-center pt-[20vh] sm:pt-[28vh] md:pt-[15vh] overflow-visible bg-transparent pb-32"
       style={{ perspective: 1000 }}
     >
       <div className="launch-trigger absolute top-0 w-full h-1" />
@@ -120,7 +120,7 @@ export default function SectionLaunchpad() {
         ref={dashboard}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="launchpad-dashboard relative z-30 w-[calc(100%-1.5rem)] sm:w-11/12 max-w-2xl bg-[#09101f]/80 backdrop-blur-xl border border-blue-500/20 rounded-3xl p-4 sm:p-6 md:p-8 shadow-[0_20px_50px_rgba(0,100,255,0.15)] cursor-crosshair transform-gpu flex flex-col gap-4 sm:gap-6"
+        className="launchpad-dashboard relative z-30 w-[calc(100%-1.5rem)] sm:w-11/12 max-w-2xl bg-[#09101f]/80 backdrop-blur-xl border border-blue-500/20 rounded-3xl p-4 sm:p-6 md:p-8 shadow-[0_20px_50px_rgba(0,100,255,0.15)] cursor-crosshair transform-gpu flex flex-col gap-4 sm:gap-6 scanlines"
         style={{ transformStyle: 'preserve-3d' }}
       >
         <div className="flex justify-between items-end border-b border-blue-500/20 pb-4">
@@ -146,53 +146,56 @@ export default function SectionLaunchpad() {
         </div>
       </div>
 
-      <div className="absolute bottom-[34%] sm:bottom-[36%] md:bottom-[40%] left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:right-16 lg:right-32 z-20 flex flex-col gap-4 max-w-sm w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] md:w-auto">
-        <div className="earth-story-card bg-white/5 backdrop-blur-md border border-blue-400/20 rounded-2xl p-5 shadow-[0_8px_32px_rgba(0,100,200,0.15)]">
-          <h3 className="text-xs text-blue-400 font-mono uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-            Our Pale Blue Dot
-          </h3>
-          <p className="text-sm text-gray-300 leading-relaxed mb-3">
-            Home to 8 billion souls — a fragile oasis spinning at 1,670 km/h through the cosmic void.
-          </p>
-          <div className="grid grid-cols-2 gap-2 text-xs">
-            <div className="flex flex-col bg-black/30 rounded-lg p-2">
-              <span className="text-gray-500 uppercase tracking-wider">Diameter</span>
-              <span className="font-mono text-white">12,742 km</span>
-            </div>
-            <div className="flex flex-col bg-black/30 rounded-lg p-2">
-              <span className="text-gray-500 uppercase tracking-wider">Age</span>
-              <span className="font-mono text-white">4.54 Bn yrs</span>
-            </div>
-            <div className="flex flex-col bg-black/30 rounded-lg p-2">
-              <span className="text-gray-500 uppercase tracking-wider">Atmosphere</span>
-              <span className="font-mono text-cyan-300">N₂ 78% O₂ 21%</span>
-            </div>
-            <div className="flex flex-col bg-black/30 rounded-lg p-2">
-              <span className="text-gray-500 uppercase tracking-wider">Gravity</span>
-              <span className="font-mono text-white">9.807 m/s²</span>
+      <div className="absolute top-[80vh] md:top-[40vh] left-0 md:left-auto md:right-16 lg:right-32 z-20 w-full md:w-auto overflow-hidden pointer-events-auto">
+        <div className="flex flex-row md:flex-col gap-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide pb-6 pt-4 md:pt-0 md:pb-0 px-4 md:px-0">
+          <div className="earth-story-card min-w-[85vw] sm:min-w-[60vw] md:min-w-0 md:w-80 glass-panel rounded-2xl p-5 shadow-[0_8px_32px_rgba(0,100,200,0.15)] animate-float snap-center" style={{animationDelay: '0s'}}>
+            <h3 className="text-xs text-blue-400 font-mono uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+              Our Pale Blue Dot
+            </h3>
+            <p className="text-sm text-gray-300 leading-relaxed mb-3">
+              Home to 8 billion souls — a fragile oasis spinning at 1,670 km/h through the cosmic void.
+            </p>
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="flex flex-col bg-black/30 rounded-lg p-2">
+                <span className="text-gray-500 uppercase tracking-wider">Diameter</span>
+                <span className="font-mono text-white">12,742 km</span>
+              </div>
+              <div className="flex flex-col bg-black/30 rounded-lg p-2">
+                <span className="text-gray-500 uppercase tracking-wider">Age</span>
+                <span className="font-mono text-white">4.54 Bn yrs</span>
+              </div>
+              <div className="flex flex-col bg-black/30 rounded-lg p-2">
+                <span className="text-gray-500 uppercase tracking-wider">Atmosphere</span>
+                <span className="font-mono text-cyan-300">N₂ 78% O₂ 21%</span>
+              </div>
+              <div className="flex flex-col bg-black/30 rounded-lg p-2">
+                <span className="text-gray-500 uppercase tracking-wider">Gravity</span>
+                <span className="font-mono text-white">9.807 m/s²</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="earth-story-card bg-white/5 backdrop-blur-md border border-cyan-500/15 rounded-2xl p-5 shadow-[0_8px_32px_rgba(0,200,255,0.1)]">
-          <h3 className="text-xs text-cyan-400 font-mono uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            Why We Leave
-          </h3>
-          <p className="text-sm text-gray-300 leading-relaxed">
-            Becoming multi-planetary isn't just ambition — it's survival. A single asteroid, a supervolcano, or a gamma-ray burst could end everything. Mars is humanity's backup drive.
-          </p>
+          <div className="earth-story-card min-w-[85vw] sm:min-w-[60vw] md:min-w-0 md:w-80 glass-panel rounded-2xl p-5 shadow-[0_8px_32px_rgba(0,200,255,0.1)] animate-float snap-center" style={{animationDelay: '1s'}}>
+            <h3 className="text-xs text-cyan-400 font-mono uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              Why We Leave
+            </h3>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              Becoming multi-planetary isn't just ambition — it's survival. A single asteroid, a supervolcano, or a gamma-ray burst could end everything. Mars is humanity's backup drive.
+            </p>
+          </div>
         </div>
       </div>
+
       <div 
-        className="realistic-earth absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[60%] w-[260vw] h-[260vw] sm:w-[180vw] sm:h-[180vw] md:w-[150vw] md:h-[150vw] rounded-[100%] z-0 
+        className="realistic-earth absolute top-[68vh] md:top-[60vh] left-1/2 -translate-x-1/2 w-[260vw] h-[260vw] sm:w-[180vw] sm:h-[180vw] md:w-[150vw] md:h-[150vw] rounded-[100%] z-0 
                    shadow-[inset_0_40px_100px_rgba(0,20,50,0.9),inset_0_-40px_200px_rgba(0,0,0,0.9),0_-20px_80px_rgba(50,150,255,0.4)] 
                    overflow-hidden border-t sm:border-t-2 border-blue-400/50 bg-[#020510] will-change-transform"
         style={{
           backgroundImage: "url('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg')",
           backgroundSize: 'cover',
-          backgroundPosition: 'center center',
+          backgroundPosition: 'top center',
           backgroundRepeat: 'no-repeat'
         }}
       >

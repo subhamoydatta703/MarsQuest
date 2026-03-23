@@ -74,7 +74,7 @@ export default function SectionAntigravityVoid() {
         <div className="absolute top-[40%] left-[250vw] w-8 h-8 bg-gray-500/50 blur-[2px] rounded-full asteroid-fast z-0" />
 
         <div className="void-panel w-screen h-full flex flex-col items-center justify-center p-4 lg:p-8 relative">
-          <div className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto right-auto md:right-8 lg:right-16 w-[calc(100%-2rem)] sm:w-[28rem] md:w-[40vw] max-w-md z-10 p-4 lg:p-8 bg-black/40 border border-white/5 rounded-2xl backdrop-blur-sm">
+          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto right-auto md:right-8 lg:right-16 w-[calc(100%-1.5rem)] sm:w-[28rem] md:w-[40vw] max-w-md z-10 p-4 lg:p-8 glass-panel rounded-2xl max-h-[85vh] overflow-y-auto scrollbar-hide">
             <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 tracking-tight">The Void</h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-6">
               Cruising at 24,000 km/h. The silence is absolute. 140 million miles of nothingness separates origin and destination.
@@ -93,7 +93,7 @@ export default function SectionAntigravityVoid() {
                  <span className="font-mono text-blue-300">-270.45 °C (2.7K)</span>
                </div>
             </div>
-            <div className="void-story-card mt-4 bg-white/5 backdrop-blur-md border border-purple-500/15 rounded-xl p-4">
+            <div className="void-story-card mt-4 glass-panel rounded-xl p-4 animate-float">
               <h4 className="text-xs text-purple-400 font-mono uppercase tracking-[0.2em] mb-2 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
                 The Interplanetary Medium
@@ -106,7 +106,7 @@ export default function SectionAntigravityVoid() {
         </div>
 
         <div className="void-panel w-screen h-full flex items-center justify-center p-4 lg:p-8 relative">
-          <div className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto right-auto md:right-8 lg:right-16 w-[calc(100%-2rem)] sm:w-[28rem] md:w-[40vw] max-w-md bg-space-800/40 backdrop-blur-lg border border-white/10 rounded-2xl p-4 lg:p-8 shadow-2xl z-10">
+          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto right-auto md:right-8 lg:right-16 w-[calc(100%-1.5rem)] sm:w-[28rem] md:w-[40vw] max-w-md glass-panel rounded-2xl p-4 lg:p-8 max-h-[85vh] overflow-y-auto scrollbar-hide">
             <h3 className="text-xl font-mono uppercase tracking-widest text-accent mb-6 border-b border-white/10 pb-4">
               Autonomous Navigation Active
             </h3>
@@ -125,7 +125,7 @@ export default function SectionAntigravityVoid() {
                </div>
             </div>
 
-            <div className="void-story-card bg-white/5 backdrop-blur-md border border-cyan-500/15 rounded-xl p-4 mb-4">
+            <div className="void-story-card glass-panel rounded-xl p-4 mb-4 animate-float" style={{animationDelay: '-2s'}}>
               <h4 className="text-xs text-cyan-400 font-mono uppercase tracking-[0.2em] mb-2 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                 Hohmann Transfer Orbit
@@ -158,7 +158,7 @@ export default function SectionAntigravityVoid() {
         </div>
 
         <div className="void-panel w-screen h-full flex flex-col items-center justify-center p-4 lg:p-8 relative">
-          <div className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto right-auto md:right-8 lg:right-16 text-left md:text-right w-[calc(100%-2rem)] sm:w-[28rem] md:w-[40vw] max-w-md z-10">
+          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto right-auto md:right-8 lg:right-16 text-left md:text-right w-[calc(100%-1.5rem)] sm:w-[28rem] md:w-[40vw] max-w-md z-10 max-h-[85vh] overflow-y-auto p-2 scrollbar-hide">
             <div className="inline-block px-4 py-1 rounded-full border border-mars-500 text-mars-500 text-sm uppercase tracking-widest mb-6 bg-black/50 backdrop-blur-sm">
               Gravity Well Detected
             </div>
@@ -167,7 +167,7 @@ export default function SectionAntigravityVoid() {
               After 210 days of silence, a rust-colored marble emerges from the darkness. What was once a pixel is now a world.
             </p>
             
-            <div className="void-story-card bg-white/5 backdrop-blur-md border border-mars-500/20 rounded-2xl p-6 w-full shadow-[0_8px_32px_rgba(226,90,56,0.15)] ml-auto">
+            <div className="void-story-card glass-panel rounded-2xl p-6 w-full ml-auto animate-float opacity-90 hover:opacity-100 transition-opacity">
               <blockquote className="text-gray-300 italic text-base sm:text-lg leading-relaxed mb-3">
                 "For all its material advantages, the sedentary life has left us edgy, unfulfilled. Even after 400 generations in villages and cities, we haven't forgotten. The open road still softly calls."
               </blockquote>

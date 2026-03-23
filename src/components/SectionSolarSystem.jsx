@@ -75,10 +75,12 @@ export default function SectionSolarSystem({ onComplete }) {
 
       const vw = window.innerWidth;
       const isMobile = vw < 640;
-      const targetDiameter = isMobile ? vw * 2.5 : vw * 1.5;
+      const targetDiameter = isMobile ? vw * 2.6 : vw * 1.5;
       const targetCenterX = vw / 2;
       const vh = window.innerHeight;
-      const targetCenterY = 1.5 * vh + 0.1 * targetDiameter;
+      // Earth is now at top-[68vh] on mobile, top-[60vh] on md
+      const earthTopOffset = isMobile ? 0.68 * vh : 0.60 * vh;
+      const targetCenterY = earthTopOffset + targetDiameter / 2;
 
       const tl = gsap.timeline({
         onComplete: () => {

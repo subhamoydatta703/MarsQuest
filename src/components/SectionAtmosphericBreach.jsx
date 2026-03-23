@@ -14,7 +14,7 @@ export default function SectionAtmosphericBreach() {
         trigger: container.current,
         start: 'top bottom',
         end: 'bottom top',
-        scrub: 2
+        scrub: 1.2
       }
     });
 
@@ -52,20 +52,29 @@ export default function SectionAtmosphericBreach() {
   return (
     <section ref={container} className="relative w-full h-[150vh] flex items-center justify-start px-4 py-16 sm:px-6 md:p-24 z-10 overflow-visible -mt-[12vh] md:-mt-[20vh]">
       <div 
-        className="moon-graphic absolute top-[14%] -right-[22vw] w-[70vw] h-[70vw] sm:top-[18%] sm:-right-[14vw] sm:w-[58vw] sm:h-[58vw] md:top-[20%] md:-right-[10vw] md:w-[50vw] md:h-[50vw] rounded-full z-0 overflow-hidden bg-[#111]
+        className="moon-graphic absolute top-[5%] -right-[30vw] w-[80vw] h-[80vw] opacity-40 sm:opacity-100 sm:top-[10%] sm:-right-[14vw] sm:w-[58vw] sm:h-[58vw] md:top-[20%] md:-right-[10vw] md:w-[50vw] md:h-[50vw] rounded-[100%] z-0 overflow-hidden bg-[#111]
                    shadow-[inset_-30px_-30px_100px_rgba(0,0,0,0.9),0_0_40px_rgba(255,255,255,0.1)] will-change-transform"
         style={{
           backgroundImage: "url('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/moon_1024.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          transform: 'translateZ(0)'
+          backgroundRepeat: 'no-repeat'
         }}
       >
          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_40%,_transparent_0%,_rgba(0,0,0,0.8)_80%,_rgba(0,0,0,0.95)_100%)] pointer-events-none" />
       </div>
 
-      <div className="max-w-2xl z-10 relative w-full pt-28 sm:pt-16 md:pt-0 md:ml-[300px]">
+      <div className="absolute top-[8%] sm:top-[12%] right-[5%] md:top-[15%] md:right-[12%] z-20 flex flex-col w-[45vw] sm:w-48 md:w-64 glass-panel bg-black/20 backdrop-blur-md border border-white/10 rounded-xl p-3 md:p-4 animate-float opacity-90 transition-opacity drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
+        <div className="flex items-center gap-2 mb-2 border-b border-white/10 pb-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-blue-300 animate-pulse shadow-[0_0_5px_#93c5fd]" />
+          <h4 className="text-[9px] md:text-sm text-blue-200 font-mono text-left uppercase tracking-[0.2em] font-bold drop-shadow-md m-0 leading-tight">Lunar Highlands</h4>
+        </div>
+        <p className="text-[10px] md:text-xs text-gray-300 text-left leading-relaxed font-sans drop-shadow-md">
+          A heavily cratered, ancient anorthosite crust. With zero atmosphere or wind, every meteor impact over the past 4.5 billion years remains perfectly preserved.
+        </p>
+      </div>
+
+      <div className="max-w-2xl z-10 relative w-full pt-12 sm:pt-16 md:pt-0 md:ml-[30vw] lg:ml-[25vw]">
         <h2 className="breach-text text-3xl sm:text-4xl md:text-6xl font-light mb-6 md:mb-8 drop-shadow-xl">
           Lunar Flyby.<br />
           <span className="text-gray-300 font-bold italic">Leaving the cradle.</span>
