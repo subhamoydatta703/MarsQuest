@@ -16,7 +16,7 @@ import SectionMartianDescent from './components/SectionMartianDescent';
 import CustomCursor from './components/CustomCursor';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
-ScrollTrigger.config({ ignoreMobileResize: true }); // Crucial for preventing heavy lag on mobile address bar hide/show
+ScrollTrigger.config({ ignoreMobileResize: true });
 gsap.config({ force3D: true });
 
 function App() {
@@ -25,9 +25,8 @@ function App() {
   const [introUnmounted, setIntroUnmounted] = useState(false);
 
   useEffect(() => {
-    // Initialize Lenis for buttery smooth native-feel scrolling
     const lenis = new Lenis({
-      lerp: 0.1, // Smoothness intensity
+      lerp: 0.1,
       wheelMultiplier: 1.0,
       smoothWheel: true,
     });
@@ -39,9 +38,9 @@ function App() {
     };
 
     gsap.ticker.add(updateLenis);
-    gsap.ticker.lagSmoothing(0); // Prevent GSAP from messing with Lenis timing
+    gsap.ticker.lagSmoothing(0);
 
-    window.lenis = lenis; // Expose for reset
+    window.lenis = lenis;
 
     return () => {
       lenis.destroy();
@@ -54,7 +53,7 @@ function App() {
     const isMobile = window.innerWidth < 768;
 
     return {
-      restY: isMobile ? '25vh' : '22vh', // Sits perfectly on the Earth curve apex
+      restY: isMobile ? '25vh' : '22vh',
       touchDownY: isMobile ? '40vh' : '35vh',
       bounceY: isMobile ? '38vh' : '33vh',
       scale: isMobile ? 0.25 : 0.3,
@@ -85,7 +84,6 @@ function App() {
       }
       window.scrollTo(0, 0); 
       
-      // Start cross-fade handoff
       gsap.to('.solar-intro-container', {
         opacity: 0,
         duration: 0.5,
@@ -105,7 +103,7 @@ function App() {
   }, [introComplete]);
 
   useGSAP(() => {
-    if (!introComplete) return; // Critical: only build scroll timelines ONCE after intro avoids infinite timeline duplication bugs freezing the rocket mid-air on scroll
+    if (!introComplete) return;
 
     const rocketRestState = getRocketRestState();
 
@@ -114,7 +112,7 @@ function App() {
         trigger: mainRef.current,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: true, // Lenis handles the smoothing, so GSAP can lock 1:1 without rubber-banding
+        scrub: true,
         invalidateOnRefresh: true,
         fastScrollEnd: true
       }
@@ -130,43 +128,35 @@ function App() {
     const vh = window.innerHeight;
     const vw = window.innerWidth;
     
-    // Time checkpoints mapped mathematically to scroll distances in px!
     const t0 = 0;
     const tMoon = 1.5 * vh;
     const tAst = 3.0 * vh;
     const tVoid = 4.5 * vh;
-    const tVoidEnd = 4.5 * vh + 3 * vw; // 300vw is precisely the pin width
+    const tVoidEnd = 4.5 * vh + 3 * vw;
     const tMars = tVoidEnd + 1.0 * vh;
     
     tl.to('.journey-hud', { opacity: 1, y: 0, duration: 0.1 * vh }, t0);
     tl.to('.rocket-exhaust', { opacity: 1, scaleY: 1, duration: 0.2 * vh }, t0);
 
-    // Phase 1: Launch (t0 to 1.0vh)
     tl.to('.cinematic-rocket', { y: '-35vh', x: '0vw', rotation: 0, scale: 1, duration: 1.0 * vh, ease: 'power2.inOut' }, t0);
     
-    // Drift & Tilt (Fixes the hanging frozen gap from 1.0 to 1.5vh)
     tl.to('.cinematic-rocket', { y: '-30vh', x: '5vw', rotation: 45, scale: 0.9, duration: 0.5 * vh, ease: 'power1.inOut' }, 1.0 * vh);
     
-    // Phase 2: Moon Flyby S-Curve
     tl.to('.cinematic-rocket', { x: '25vw', y: '-10vh', rotation: 90, scale: 0.7, duration: 0.5 * vh, ease: 'sine.inOut' }, tMoon);
     tl.to('.cinematic-rocket', { x: '25vw', y: '15vh', rotation: 180, scale: 0.65, duration: 0.5 * vh, ease: 'sine.inOut' }, tMoon + 0.5 * vh);
     tl.to('.cinematic-rocket', { x: '0vw', y: '15vh', rotation: 225, scale: 0.8, duration: 0.5 * vh, ease: 'sine.inOut' }, tMoon + 1.0 * vh);
 
-    // Phase 3: Asteroid Belt Dodge
     tl.to('.cinematic-rocket', { x: '-25vw', y: '0vh', rotation: 315, scale: 0.75, duration: 0.75 * vh, ease: 'sine.inOut' }, tAst);
     tl.to('.cinematic-rocket', { x: '20vw', y: '10vh', rotation: 150, scale: 0.7, duration: 0.75 * vh, ease: 'sine.inOut' }, tAst + 0.75 * vh);
     
-    // Phase 4: Through the Void (Handles exact width of the horizontal scrolling pin dynamically)
     const voidDur = 3 * vw;
     tl.to('.cinematic-rocket', { x: '-15vw', y: '15vh', rotation: 210, scale: 0.85, duration: voidDur * 0.33, ease: 'sine.inOut' }, tVoid);
     tl.to('.cinematic-rocket', { x: '15vw', y: '5vh', rotation: 150, scale: 0.75, duration: voidDur * 0.33, ease: 'sine.inOut' }, tVoid + voidDur * 0.33);
     tl.to('.cinematic-rocket', { x: '0vw', y: '15vh', rotation: 180, scale: 0.8, duration: voidDur * 0.34, ease: 'sine.inOut' }, tVoid + voidDur * 0.66);
 
-    // Phase 5: Mars Approach (Retro-burn flip)
     tl.to('.cinematic-rocket', { rotation: 360, scale: 0.85, x: '0vw', y: '-5vh', duration: 1.0 * vh, ease: 'power2.inOut' }, tVoidEnd);
     tl.to('.cinematic-rocket', { y: '10vh', scale: 0.8, duration: 1.0 * vh, ease: 'sine.in' }, tMars);
 
-    // Telemetry Update
     const metrics = { dist: 0, vel: 11.2, days: 0, fuel: 100 };
     tl.to(metrics, {
       dist: 140000000,
@@ -192,7 +182,6 @@ function App() {
 
     tl.to(metrics, { vel: 3.5, duration: 0.5 * vh, ease: 'none' }, tMars);
 
-    // Phase 6: Touchdown
     const tTouch = tVoidEnd + 2.0 * vh;
     tl.to('.rocket-exhaust', { opacity: 0, scaleY: 0, duration: 0.1 * vh }, tTouch);
     tl.to('.cinematic-rocket', { y: rocketRestState.touchDownY, scale: 0.7, duration: 0.1 * vh }, tTouch);

@@ -11,7 +11,6 @@ const ParticleBackground = () => {
     let width = window.innerWidth;
     let height = window.innerHeight;
 
-    // Pseudo-3D starfield logic
     let stars = [];
     const numStars = width < 768 ? 400 : 800;
     const baseSpeed = 1.0;
@@ -30,13 +29,12 @@ const ParticleBackground = () => {
     };
 
     const render = () => {
-      ctx.fillStyle = 'rgba(3, 6, 16, 0.15)'; // Smoother trailing effect
+      ctx.fillStyle = 'rgba(3, 6, 16, 0.15)';
       ctx.fillRect(0, 0, width, height);
 
       const cx = width / 2;
       const cy = height / 2;
 
-      // Make scroll position affect speed slightly for parallax
       const scrollY = window.scrollY;
       const dynamicSpeed = baseSpeed + (scrollY * 0.0003);
 
@@ -53,10 +51,8 @@ const ParticleBackground = () => {
         const x = cx + star.x / star.z * width;
         const y = cy + star.y / star.z * width;
         
-        // Star size gets bigger as it gets closer
         const r = Math.max(0.1, (1 - star.z / width) * 2);
         
-        // Parallax tail
         const pz = star.z + dynamicSpeed;
         const px = cx + star.x / pz * width;
         const py = cy + star.y / pz * width;

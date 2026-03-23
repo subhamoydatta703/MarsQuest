@@ -68,10 +68,10 @@ export default function SectionSolarSystem({ onComplete }) {
         scale: 1,
         borderRadius: '50%',
         zIndex: 1001,
-        boxShadow: '0 0 8px rgba(59,130,246,0.5), 0 0 16px rgba(59,130,246,0.15)', // Match exactly
+        boxShadow: '0 0 8px rgba(59,130,246,0.5), 0 0 16px rgba(59,130,246,0.15)',
         borderColor: 'transparent',
         backgroundColor: 'transparent',
-        backgroundPosition: 'top center' // Match SectionLaunchpad
+        backgroundPosition: 'top center'
       });
 
       const vw = window.innerWidth;
@@ -79,26 +79,24 @@ export default function SectionSolarSystem({ onComplete }) {
       
       let targetDiameter;
       if (vw >= 768) {
-        targetDiameter = vw * 1.5; // matches md:w-[150vw]
+        targetDiameter = vw * 1.5;
       } else if (vw >= 640) {
-        targetDiameter = vw * 1.8; // matches sm:w-[180vw]
+        targetDiameter = vw * 1.8;
       } else {
-        targetDiameter = vw * 2.6; // matches w-[260vw]
+        targetDiameter = vw * 2.6;
       }
 
       const targetCenterX = vw / 2;
-      // Earth is at top-[68vh] below md, and top-[60vh] on md and up
       const earthTopOffset = vw >= 768 ? 0.60 * vh : 0.68 * vh;
       const targetCenterY = earthTopOffset + targetDiameter / 2;
 
       const tl = gsap.timeline({
         onComplete: () => {
-          onComplete(); // Notify parent to start the cross-fade reveal
+          onComplete();
         }
       });
 
-      // Fade everything EXCEPT the clone
-      tl.set(ssEarthEl, { opacity: 0 }, 0); // Hide original immediately
+      tl.set(ssEarthEl, { opacity: 0 }, 0);
       tl.set('.orbit-earth', { borderColor: 'transparent' }, 0);
 
       tl.to('.milky-way-bg, .star-field, .sun-core, .sun-corona, .solar-system-wrapper, [class*="orbit-"]', { 
@@ -115,13 +113,13 @@ export default function SectionSolarSystem({ onComplete }) {
         height: targetDiameter,
         boxShadow: 'inset 0 40px 100px rgba(0,20,50,0.9), inset 0 -40px 200px rgba(0,0,0,0.9), 0 -20px 80px rgba(50,150,255,0.4)',
         borderColor: 'rgba(96, 165, 250, 0.5)', 
-        backgroundColor: '#020510', // Deep space background color
+        backgroundColor: '#020510',
         duration: 3.0,
-        ease: 'power3.inOut' // Use power3 for the zoom speed curve
+        ease: 'power3.inOut'
       }, 0);
 
       tl.to('.clone-atmosphere', { opacity: 1, duration: 1.5, ease: 'sine.inOut' }, 1.0);
-      tl.to(container.current, { backgroundColor: '#020510', duration: 1.5 }, 0.5); // Merge background with App.jsx bgColor
+      tl.to(container.current, { backgroundColor: '#020510', duration: 1.5 }, 0.5);
     };
 
     const handleScroll = (e) => {

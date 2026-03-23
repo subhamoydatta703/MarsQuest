@@ -6,7 +6,6 @@ export default function CustomCursor() {
   const ringRef = useRef(null);
 
   useEffect(() => {
-    // Disable on touch devices
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
 
     const dotX = gsap.quickTo(dotRef.current, "x", { duration: 0.1, ease: "power3" });

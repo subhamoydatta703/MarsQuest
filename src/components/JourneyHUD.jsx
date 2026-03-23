@@ -8,8 +8,6 @@ export default function JourneyHUD() {
                     md:gap-6 font-mono text-white
                     glass-panel border-x-0 border-t-0 border-b border-white/10 p-2 sm:p-3
                     md:!bg-transparent md:!backdrop-blur-none md:!border-none md:!shadow-none md:p-0">
-      
-      {/* Panel 1: Main Telemetry */}
       <div className="relative flex-1 flex flex-row items-center justify-around md:justify-start md:flex-col md:glass-panel md:p-4 md:rounded-lg md:scanlines gap-2 md:gap-0">
         <h3 className="hidden md:block text-xs text-accent uppercase tracking-[0.2em] mb-3 drop-shadow-[0_0_5px_rgba(0,240,255,0.8)]">Telemetry Data</h3>
         
@@ -31,7 +29,6 @@ export default function JourneyHUD() {
         </div>
       </div>
 
-      {/* Panel 2: Fuel */}
       <div className="relative flex flex-col justify-center px-3 sm:px-4 w-16 sm:w-24 md:w-full border-l border-white/10 md:border-none md:glass-panel md:p-4 md:rounded-lg md:scanlines">
         <div className="flex flex-row md:justify-between items-center md:mb-1 justify-center relative w-full">
           <span className="text-[8px] md:text-xs text-gray-400 uppercase tracking-wider hidden md:block">Main Thruster Fuel</span>
@@ -42,7 +39,6 @@ export default function JourneyHUD() {
         </div>
       </div>
 
-      {/* Panel 3: Status */}
       <div className="relative flex items-center justify-center px-3 sm:px-4 border-l border-white/10 md:border-none md:glass-panel md:p-4 md:rounded-lg md:scanlines gap-1.5 md:gap-3">
         <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-green-500 hud-status-light animate-pulse shadow-[0_0_8px_#22c55e]" />
         <span className="text-[8px] sm:text-[10px] md:text-xs tracking-wider hud-status-text hidden sm:block uppercase whitespace-nowrap text-center">SYSTEMS NOMINAL</span>

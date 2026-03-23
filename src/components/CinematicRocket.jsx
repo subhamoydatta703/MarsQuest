@@ -8,7 +8,6 @@ const CinematicRocket = forwardRef((props, ref) => {
       style={{ originY: '50%', originX: '50%' }}
     >
       <div className="rocket-exhaust absolute bottom-[-55px] left-1/2 -translate-x-1/2 w-16 h-40 opacity-0 transform origin-top scale-y-0 will-change-transform flex flex-col items-center">
-        {/* Restored gorgeous flame aesthetics using tiny, GPU-friendly blurs (2-4px) instead of the extremely heavy 40px blurs */}
         <div className="absolute w-16 h-32 bg-gradient-to-b from-orange-500/80 via-red-600/40 to-transparent rounded-full blur-[4px]" />
         <div className="absolute w-8 h-24 bg-gradient-to-b from-yellow-400 via-orange-500/80 to-transparent rounded-full blur-[2px]" 
              style={{ animation: 'flicker 0.2s ease-in-out infinite alternate' }} />

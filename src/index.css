@@ -21,7 +21,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* GPU acceleration for all major animated elements */
 .cinematic-rocket,
 .realistic-earth,
 .solar-earth-texture,
@@ -35,7 +34,6 @@ body {
   transform: translateZ(0);
 }
 
-/* Also GPU-hint glass panels during scroll */
 .glass-panel,
 .earth-story-card,
 .moon-story-card,
@@ -47,7 +45,6 @@ body {
   -webkit-backface-visibility: hidden;
 }
 
-/* Hide scrollbar for a cinematic look */
 ::-webkit-scrollbar {
   display: none;
 }
@@ -87,9 +84,9 @@ body {
 }
 
 .glass-panel {
-  background: rgba(10, 15, 30, 0.7); /* Increased opacity to compensate for lack of blur */
-  border: 1px solid rgba(255, 255, 255, 0.08); /* Maintain glass edge */
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.05); /* Maintain 3D popping */
+  background: rgba(10, 15, 30, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .scanlines {
@@ -106,4 +103,3 @@ body {
   mix-blend-mode: overlay;
   border-radius: inherit;
 }
-

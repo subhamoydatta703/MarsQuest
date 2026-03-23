@@ -84,7 +84,6 @@ export default function SectionMartianDescent() {
           </div>
         </div>
 
-        {/* Mobile: Horizontal scroll, Desktop: Flex row */}
         <div className="flex flex-row md:flex-row overflow-x-auto md:overflow-visible snap-x snap-mandatory gap-4 w-full text-left pb-4 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
           <div className="mars-story-card min-w-[85vw] sm:min-w-0 flex-1 glass-panel rounded-2xl p-4 sm:p-5 animate-float snap-center" style={{animationDelay: '0s'}}>
             <h3 className="text-xs text-mars-500 font-mono uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
