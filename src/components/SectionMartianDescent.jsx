@@ -17,7 +17,7 @@ export default function SectionMartianDescent() {
       scrollTrigger: {
         trigger: container.current,
         end: 'bottom bottom',
-        scrub: 1.2,
+        scrub: 0.5,
         invalidateOnRefresh: true
       }
     });
@@ -27,11 +27,11 @@ export default function SectionMartianDescent() {
       start: 'top 80%',
       onEnter: () => {
         const voidSec = document.getElementById('void-section');
-        if(voidSec) voidSec.style.opacity = '0';
+        if(voidSec) gsap.set(voidSec, { autoAlpha: 0 });
       },
       onLeaveBack: () => {
         const voidSec = document.getElementById('void-section');
-        if(voidSec) voidSec.style.opacity = '1';
+        if(voidSec) gsap.set(voidSec, { autoAlpha: 1 });
       }
     });
 

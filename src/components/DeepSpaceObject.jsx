@@ -24,7 +24,7 @@ const Asteroid = () => {
       <group ref={groupRef}>
         {/* Main Asteroid Mass */}
         <mesh castShadow receiveShadow>
-          <icosahedronGeometry args={[2.5, 16]} />
+          <icosahedronGeometry args={[2.5, 6]} />
           <MeshDistortMaterial 
             map={rockTexture}
             bumpMap={rockTexture}
@@ -39,7 +39,7 @@ const Asteroid = () => {
         
         {/* Sub-boulder 1 */}
         <mesh position={[1.5, 1.2, 0]} castShadow receiveShadow>
-          <icosahedronGeometry args={[1.2, 8]} />
+          <icosahedronGeometry args={[1.2, 3]} />
           <MeshDistortMaterial 
             map={rockTexture}
             bumpMap={rockTexture}
@@ -54,7 +54,7 @@ const Asteroid = () => {
         
         {/* Sub-boulder 2 */}
         <mesh position={[-1.2, -1.0, 1.5]} castShadow receiveShadow>
-          <icosahedronGeometry args={[1.4, 8]} />
+          <icosahedronGeometry args={[1.4, 3]} />
           <MeshDistortMaterial 
             map={rockTexture}
             bumpMap={rockTexture}
@@ -69,7 +69,7 @@ const Asteroid = () => {
 
         {/* Sub-boulder 3 */}
         <mesh position={[0.5, -1.8, -1.2]} castShadow receiveShadow>
-          <icosahedronGeometry args={[1.0, 6]} />
+          <icosahedronGeometry args={[1.0, 3]} />
           <MeshDistortMaterial 
             map={rockTexture}
             bumpMap={rockTexture}
@@ -127,7 +127,7 @@ const Satellite = () => {
 export default function DeepSpaceObject({ type = 'asteroid' }) {
   return (
     <div className="w-full h-full absolute inset-0 z-0 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 11], fov: 45 }} gl={{ antialias: true, alpha: true }}>
+      <Canvas camera={{ position: [0, 0, 11], fov: 45 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true }}>
         <ambientLight intensity={0.4} />
         <directionalLight position={[10, 10, 10]} intensity={1.5} castShadow />
         <directionalLight position={[-10, -10, -10]} intensity={0.2} color="#0055ff" />

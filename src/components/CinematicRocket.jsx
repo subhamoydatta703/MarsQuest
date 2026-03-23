@@ -4,8 +4,8 @@ const CinematicRocket = forwardRef((props, ref) => {
   return (
     <div 
       ref={ref}
-      className="cinematic-rocket fixed top-[88%] md:top-[75%] left-[50%] pointer-events-none z-[100] will-change-transform"
-      style={{ originY: '70%' }}
+      className="cinematic-rocket fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] pointer-events-none z-[100] will-change-transform"
+      style={{ originY: '50%', originX: '50%' }}
     >
       <div className="rocket-exhaust absolute bottom-[-55px] left-1/2 -translate-x-1/2 w-16 h-40 opacity-0 transform origin-top scale-y-0 will-change-transform flex flex-col items-center">
         <div className="absolute w-20 h-40 bg-gradient-to-b from-orange-500/60 via-red-600/30 to-transparent blur-2xl rounded-full animate-pulse" />

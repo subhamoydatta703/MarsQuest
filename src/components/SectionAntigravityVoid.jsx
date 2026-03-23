@@ -16,12 +16,12 @@ export default function SectionAntigravityVoid() {
       scrollTrigger: {
         trigger: container.current,
         pin: true,
-        scrub: 1.2,
+        scrub: 0.3,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         end: () => '+=' + scrollContainer.current.offsetWidth,
-        onLeave: () => gsap.to(container.current, { autoAlpha: 0, duration: 0.2 }),
-        onEnterBack: () => gsap.to(container.current, { autoAlpha: 1, duration: 0.2 })
+        onLeave: () => gsap.set(container.current, { autoAlpha: 0 }),
+        onEnterBack: () => gsap.set(container.current, { autoAlpha: 1 })
       }
     });
 
@@ -32,7 +32,7 @@ export default function SectionAntigravityVoid() {
         trigger: container.current,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 1.2,
+        scrub: 0.5,
         invalidateOnRefresh: true
       }
     });
@@ -58,7 +58,7 @@ export default function SectionAntigravityVoid() {
 
 
   return (
-    <section id="void-section" ref={container} className="relative w-full h-screen overflow-hidden bg-transparent z-20 transition-opacity duration-300">
+    <section id="void-section" ref={container} className="relative w-full h-screen overflow-hidden bg-transparent z-20">
       <div 
         ref={scrollContainer} 
         className="flex h-full w-[300vw]"

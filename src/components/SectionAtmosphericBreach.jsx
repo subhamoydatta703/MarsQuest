@@ -14,7 +14,7 @@ export default function SectionAtmosphericBreach() {
         trigger: container.current,
         start: 'top bottom',
         end: 'bottom top',
-        scrub: 1.2
+        scrub: 0.5
       }
     });
 
@@ -52,7 +52,7 @@ export default function SectionAtmosphericBreach() {
   return (
     <section ref={container} className="relative w-full h-[150vh] flex items-center justify-start px-4 py-16 sm:px-6 md:p-24 z-10 overflow-visible -mt-[12vh] md:-mt-[20vh]">
       <div 
-        className="moon-graphic absolute top-[5%] -right-[30vw] w-[80vw] h-[80vw] opacity-40 sm:opacity-100 sm:top-[10%] sm:-right-[14vw] sm:w-[58vw] sm:h-[58vw] md:top-[20%] md:-right-[10vw] md:w-[50vw] md:h-[50vw] rounded-[100%] z-0 overflow-hidden bg-[#111]
+        className="moon-graphic absolute top-[5%] -right-[30vw] w-[80vw] h-[80vw] opacity-100 sm:top-[10%] sm:-right-[14vw] sm:w-[58vw] sm:h-[58vw] md:top-[20%] md:-right-[10vw] md:w-[50vw] md:h-[50vw] rounded-[100%] z-0 overflow-hidden bg-[#111]
                    shadow-[inset_-30px_-30px_100px_rgba(0,0,0,0.9),0_0_40px_rgba(255,255,255,0.1)] will-change-transform"
         style={{
           backgroundImage: "url('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/moon_1024.jpg')",

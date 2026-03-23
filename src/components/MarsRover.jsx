@@ -5,7 +5,7 @@ import { Float } from '@react-three/drei';
 export default function MarsRover() {
    return (
     <div className="absolute bottom-[20vh] md:bottom-[25vh] right-[2vw] md:right-[8vw] w-24 h-24 sm:w-32 sm:h-32 md:w-64 md:h-64 z-20 opacity-90 transition-opacity duration-1000">
-      <Canvas camera={{ position: [5, 4, 6], fov: 35 }} gl={{ antialias: true, alpha: true }}>
+      <Canvas camera={{ position: [5, 4, 6], fov: 35 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true }}>
         <ambientLight intensity={0.4} />
         <directionalLight position={[10, 10, 10]} intensity={1.5} color="#ffb78c" castShadow />
         <directionalLight position={[-10, 5, -10]} intensity={0.2} color="#ffffff" />
