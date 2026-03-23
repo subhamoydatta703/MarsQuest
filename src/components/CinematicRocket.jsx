@@ -8,11 +8,12 @@ const CinematicRocket = forwardRef((props, ref) => {
       style={{ originY: '50%', originX: '50%' }}
     >
       <div className="rocket-exhaust absolute bottom-[-55px] left-1/2 -translate-x-1/2 w-16 h-40 opacity-0 transform origin-top scale-y-0 will-change-transform flex flex-col items-center">
-        <div className="absolute w-20 h-40 bg-gradient-to-b from-orange-500/60 via-red-600/30 to-transparent blur-2xl rounded-full animate-pulse" />
-        <div className="absolute w-10 h-32 bg-gradient-to-b from-yellow-400/80 via-orange-500/50 to-transparent blur-lg rounded-full" 
-             style={{ animation: 'flicker 0.15s ease-in-out infinite alternate' }} />
-        <div className="absolute w-4 h-24 bg-gradient-to-b from-cyan-200 via-blue-300/60 to-transparent blur-md rounded-full"
-             style={{ animation: 'flicker 0.1s ease-in-out infinite alternate-reverse' }} />
+        {/* Restored gorgeous flame aesthetics using tiny, GPU-friendly blurs (2-4px) instead of the extremely heavy 40px blurs */}
+        <div className="absolute w-16 h-32 bg-gradient-to-b from-orange-500/80 via-red-600/40 to-transparent rounded-full blur-[4px]" />
+        <div className="absolute w-8 h-24 bg-gradient-to-b from-yellow-400 via-orange-500/80 to-transparent rounded-full blur-[2px]" 
+             style={{ animation: 'flicker 0.2s ease-in-out infinite alternate' }} />
+        <div className="absolute w-3 h-16 bg-gradient-to-b from-white via-cyan-200/80 to-transparent rounded-full"
+             style={{ animation: 'flicker 0.15s ease-in-out infinite alternate-reverse' }} />
         <div className="absolute w-1 h-1 bg-yellow-300 rounded-full blur-[1px] top-28 left-[45%]"
              style={{ animation: 'sparkDrift 0.6s ease-out infinite' }} />
         <div className="absolute w-1 h-1 bg-orange-400 rounded-full blur-[1px] top-24 left-[55%]"
@@ -88,8 +89,8 @@ const CinematicRocket = forwardRef((props, ref) => {
 
       <style>{`
         @keyframes flicker {
-          0% { transform: scaleX(1) scaleY(1); opacity: 0.9; }
-          100% { transform: scaleX(1.15) scaleY(1.05); opacity: 1; }
+          0% { transform: scaleX(1) scaleY(1); opacity: 0.85; }
+          100% { transform: scaleX(1.1) scaleY(1.04); opacity: 1; }
         }
         @keyframes sparkDrift {
           0% { transform: translateY(0) scale(1); opacity: 1; }

@@ -60,48 +60,53 @@ export default function SectionSolarSystem({ onComplete }) {
       gsap.set(clone, {
         display: 'block',
         position: 'fixed',
-        left: earthCenterX - earthSize / 2,
-        top: earthCenterY - earthSize / 2,
-        width: earthSize,
-        height: earthSize,
+        left: ssRect.left,
+        top: ssRect.top,
+        width: ssRect.width,
+        height: ssRect.height,
         opacity: 1,
         scale: 1,
         borderRadius: '50%',
         zIndex: 1001,
-        boxShadow: '0 0 10px rgba(59,130,246,0.5), 0 0 25px rgba(59,130,246,0.15)',
+        boxShadow: '0 0 8px rgba(59,130,246,0.5), 0 0 16px rgba(59,130,246,0.15)', // Match exactly
         borderColor: 'transparent',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        backgroundPosition: 'top center' // Match SectionLaunchpad
       });
 
       const vw = window.innerWidth;
-      const isMobile = vw < 640;
-      const targetDiameter = isMobile ? vw * 2.6 : vw * 1.5;
-      const targetCenterX = vw / 2;
       const vh = window.innerHeight;
-      // Earth is now at top-[68vh] on mobile, top-[60vh] on md
-      const earthTopOffset = isMobile ? 0.68 * vh : 0.60 * vh;
+      
+      let targetDiameter;
+      if (vw >= 768) {
+        targetDiameter = vw * 1.5; // matches md:w-[150vw]
+      } else if (vw >= 640) {
+        targetDiameter = vw * 1.8; // matches sm:w-[180vw]
+      } else {
+        targetDiameter = vw * 2.6; // matches w-[260vw]
+      }
+
+      const targetCenterX = vw / 2;
+      // Earth is at top-[68vh] below md, and top-[60vh] on md and up
+      const earthTopOffset = vw >= 768 ? 0.60 * vh : 0.68 * vh;
       const targetCenterY = earthTopOffset + targetDiameter / 2;
 
       const tl = gsap.timeline({
         onComplete: () => {
-          gsap.set(clone, { display: 'none' });
-          onComplete();
+          onComplete(); // Notify parent to start the cross-fade reveal
         }
       });
 
-      tl.to('.milky-way-bg, .star-field', { opacity: 0, duration: 0.8, ease: 'power1.inOut' }, 0.2);
-      tl.to('.orbit-mercury, .orbit-venus, .orbit-mars, .orbit-jupiter, .orbit-saturn, .orbit-uranus, .orbit-neptune, .orbit-moon', {
-        borderColor: 'transparent', duration: 0.5, ease: 'none'
-      }, 0.2);
-      tl.to('.sun-core, .sun-corona', { opacity: 0, duration: 0.8, ease: 'power1.inOut' }, 0.3);
-      tl.to('.orbit-mercury, .orbit-venus', { opacity: 0, duration: 0.7, ease: 'power1.inOut' }, 0.4);
-      tl.to('.orbit-mars, .orbit-jupiter', { opacity: 0, duration: 0.7, ease: 'power1.inOut' }, 0.5);
-      tl.to('.orbit-saturn, .orbit-uranus, .orbit-neptune', { opacity: 0, duration: 0.7, ease: 'power1.inOut' }, 0.6);
-      tl.to('.orbit-moon', { opacity: 0, duration: 0.5, ease: 'power1.inOut' }, 0.5);
-      
-      tl.to(ssEarthEl, { opacity: 0, duration: 0.01 }, 0);
-      tl.to('.orbit-earth', { borderColor: 'transparent', duration: 0.3 }, 0);
-      tl.to(container.current, { backgroundColor: '#030610', duration: 1.0, ease: 'power1.inOut' }, 0.3);
+      // Fade everything EXCEPT the clone
+      tl.set(ssEarthEl, { opacity: 0 }, 0); // Hide original immediately
+      tl.set('.orbit-earth', { borderColor: 'transparent' }, 0);
+
+      tl.to('.milky-way-bg, .star-field, .sun-core, .sun-corona, .solar-system-wrapper, [class*="orbit-"]', { 
+        opacity: 0, 
+        duration: 1.2, 
+        ease: 'sine.inOut',
+        stagger: 0.1
+      }, 0.5);
 
       tl.to(clone, {
         left: targetCenterX - targetDiameter / 2,
@@ -110,20 +115,23 @@ export default function SectionSolarSystem({ onComplete }) {
         height: targetDiameter,
         boxShadow: 'inset 0 40px 100px rgba(0,20,50,0.9), inset 0 -40px 200px rgba(0,0,0,0.9), 0 -20px 80px rgba(50,150,255,0.4)',
         borderColor: 'rgba(96, 165, 250, 0.5)', 
-        backgroundColor: '#020510',
-        duration: 2.5,
-        ease: 'expo.inOut'
+        backgroundColor: '#020510', // Deep space background color
+        duration: 3.0,
+        ease: 'power3.inOut' // Use power3 for the zoom speed curve
       }, 0);
 
-      tl.to('.clone-atmosphere', { opacity: 1, duration: 1.0, ease: 'power2.inOut' }, 1.0);
-      tl.to(container.current, { opacity: 0, duration: 0.5, ease: 'power2.out' }, 1.8);
+      tl.to('.clone-atmosphere', { opacity: 1, duration: 1.5, ease: 'sine.inOut' }, 1.0);
+      tl.to(container.current, { backgroundColor: '#020510', duration: 1.5 }, 0.5); // Merge background with App.jsx bgColor
     };
 
     const handleScroll = (e) => {
-      if (e.deltaY > 0) initiateJourney();
+      if (e.deltaY > 0) {
+        if (e.cancelable) e.preventDefault();
+        initiateJourney();
+      }
     };
-    window.addEventListener('wheel', handleScroll);
-    window.addEventListener('touchstart', initiateJourney);
+    window.addEventListener('wheel', handleScroll, { passive: false });
+    window.addEventListener('touchstart', initiateJourney, { passive: false });
     return () => {
       window.removeEventListener('wheel', handleScroll);
       window.removeEventListener('touchstart', initiateJourney);
@@ -169,14 +177,14 @@ export default function SectionSolarSystem({ onComplete }) {
         className="hidden overflow-hidden border-t sm:border-t-2"
         style={{
           backgroundImage: "url('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg')",
-          backgroundSize: 'cover', backgroundPosition: 'center center', backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover', backgroundPosition: 'top center', backgroundRepeat: 'no-repeat',
           borderRadius: '100%', borderColor: 'transparent'
         }}
       >
         <div className="clone-atmosphere absolute inset-0 opacity-0 pointer-events-none">
-          <div className="absolute inset-0 rounded-[100%] shadow-[inset_0_10vw_10vw_rgba(30,120,255,0.4)] mix-blend-screen" />
-          <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay" />
-          <div className="absolute top-0 w-full h-[30%] bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 10%22 preserveAspectRatio=%22none%22><path d=%22M0,5 Q10,0 20,5 T40,5 T60,5 T80,5 T100,5 L100,10 L0,10 Z%22 fill=%22rgba(255,255,255,0.4)%22/></svg>')] bg-repeat-x bg-[length:10%_100%] opacity-60 mix-blend-screen scale-y-50 mt-[5vw]" />
+          <div className="absolute inset-0 rounded-[100%] shadow-[inset_0_10vw_10vw_rgba(30,120,255,0.4)] opacity-80" />
+          <div className="absolute inset-0 bg-blue-900/40" />
+          <div className="absolute top-0 w-full h-[30%] bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 10%22 preserveAspectRatio=%22none%22><path d=%22M0,5 Q10,0 20,5 T40,5 T60,5 T80,5 T100,5 L100,10 L0,10 Z%22 fill=%22rgba(255,255,255,0.4)%22/></svg>')] bg-repeat-x bg-[length:10%_100%] opacity-40 scale-y-50 mt-[5vw]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,_rgba(0,0,0,0.9)_0%,_transparent_70%)]" />
         </div>
       </div>
@@ -255,7 +263,7 @@ export default function SectionSolarSystem({ onComplete }) {
                  onPointerEnter={(e) => handlePointerEnter(e, 'earth')} onPointerMove={handlePointerMove} onPointerLeave={handlePointerLeave}
                  style={{
                    backgroundImage: "url('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg')",
-                   backgroundSize: 'cover', backgroundPosition: 'center',
+                   backgroundSize: 'cover', backgroundPosition: 'top center',
                    boxShadow: '0 0 8px rgba(59,130,246,0.5), 0 0 16px rgba(59,130,246,0.15)'
                  }}>
               <div className="absolute inset-0 rounded-full" style={{ background: 'radial-gradient(circle at 40% 35%, transparent 30%, rgba(0,0,0,0.55) 100%)' }} />

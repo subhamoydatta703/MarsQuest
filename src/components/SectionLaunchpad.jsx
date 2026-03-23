@@ -13,14 +13,14 @@ export default function SectionLaunchpad() {
 
   useGSAP(() => {
     rotateXToRef.current = gsap.quickTo(dashboard.current, 'rotateX', {
-      duration: 0.35,
-      ease: 'power3.out',
+      duration: 0.5,
+      ease: 'power2.out',
       overwrite: 'auto'
     });
 
     rotateYToRef.current = gsap.quickTo(dashboard.current, 'rotateY', {
-      duration: 0.35,
-      ease: 'power3.out',
+      duration: 0.5,
+      ease: 'power2.out',
       overwrite: 'auto'
     });
 
@@ -31,7 +31,7 @@ export default function SectionLaunchpad() {
         trigger: container.current,
         start: 'top top',
         end: 'bottom top',
-        scrub: 1,
+        scrub: 0.8,
         invalidateOnRefresh: true
       }
     });
@@ -44,7 +44,7 @@ export default function SectionLaunchpad() {
         trigger: container.current,
         start: 'top top',
         end: 'bottom top',
-        scrub: 1,
+        scrub: 0.8,
         invalidateOnRefresh: true
       }
     });
@@ -65,9 +65,9 @@ export default function SectionLaunchpad() {
       gsap.from(card, {
         y: 60,
         opacity: 0,
-        duration: 1.2,
-        delay: i * 0.15,
-        ease: 'power3.out',
+        duration: 1.4,
+        delay: i * 0.12,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: container.current,
           start: 'top 30%',
@@ -199,9 +199,9 @@ export default function SectionLaunchpad() {
           backgroundRepeat: 'no-repeat'
         }}
       >
-        <div className="absolute inset-0 rounded-[100%] shadow-[inset_0_10vw_10vw_rgba(30,120,255,0.4)] pointer-events-none mix-blend-screen" />
-        <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay" />
-        <div className="absolute top-0 w-full h-[30%] bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 10%22 preserveAspectRatio=%22none%22><path d=%22M0,5 Q10,0 20,5 T40,5 T60,5 T80,5 T100,5 L100,10 L0,10 Z%22 fill=%22rgba(255,255,255,0.4)%22/></svg>')] bg-repeat-x bg-[length:10%_100%] opacity-60 mix-blend-screen scale-y-50 mt-[5vw]" />
+        <div className="absolute inset-0 rounded-[100%] shadow-[inset_0_10vw_10vw_rgba(30,120,255,0.4)] pointer-events-none opacity-80" />
+        <div className="absolute inset-0 bg-blue-900/40" />
+        <div className="absolute top-0 w-full h-[30%] bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 10%22 preserveAspectRatio=%22none%22><path d=%22M0,5 Q10,0 20,5 T40,5 T60,5 T80,5 T100,5 L100,10 L0,10 Z%22 fill=%22rgba(255,255,255,0.4)%22/></svg>')] bg-repeat-x bg-[length:10%_100%] opacity-40 scale-y-50 mt-[5vw]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,_rgba(0,0,0,0.9)_0%,_transparent_70%)] pointer-events-none" />
       </div>
 

@@ -17,7 +17,7 @@ export default function SectionMartianDescent() {
       scrollTrigger: {
         trigger: container.current,
         end: 'bottom bottom',
-        scrub: 0.5,
+        scrub: 0.8,
         invalidateOnRefresh: true
       }
     });
@@ -39,9 +39,9 @@ export default function SectionMartianDescent() {
       gsap.from(card, {
         y: 50,
         opacity: 0,
-        duration: 1.2,
-        delay: i * 0.2,
-        ease: 'power3.out',
+        duration: 1.4,
+        delay: i * 0.15,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: container.current,
           start: 'top 50%',
@@ -139,7 +139,7 @@ export default function SectionMartianDescent() {
           backgroundRepeat: 'no-repeat'
         }}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(255,150,50,0.2)_0%,_transparent_60%)] mix-blend-screen pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(255,150,50,0.15)_0%,_transparent_60%)] pointer-events-none opacity-80" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,_rgba(0,0,0,1)_0%,_transparent_75%)] pointer-events-none" />
       </div>
       
@@ -153,7 +153,7 @@ export default function SectionMartianDescent() {
              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500 animate-pulse shadow-[0_0_15px_#22c55e]" />
           </div>
           
-          <div className="landing-scanline absolute top-0 left-0 w-full h-0 bg-blue-500/10 mix-blend-screen" />
+          <div className="landing-scanline absolute top-0 left-0 w-full h-0 bg-blue-400/20" />
         </div>
         
         <div className="grid grid-cols-2 gap-y-2 sm:gap-y-6 gap-x-2 sm:gap-x-4">

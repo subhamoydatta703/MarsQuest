@@ -30,7 +30,7 @@ const ParticleBackground = () => {
     };
 
     const render = () => {
-      ctx.fillStyle = 'rgba(3, 6, 16, 0.25)'; // Trailing effect
+      ctx.fillStyle = 'rgba(3, 6, 16, 0.15)'; // Smoother trailing effect
       ctx.fillRect(0, 0, width, height);
 
       const cx = width / 2;
@@ -38,7 +38,7 @@ const ParticleBackground = () => {
 
       // Make scroll position affect speed slightly for parallax
       const scrollY = window.scrollY;
-      const dynamicSpeed = baseSpeed + (scrollY * 0.0005);
+      const dynamicSpeed = baseSpeed + (scrollY * 0.0003);
 
       for (let i = 0; i < stars.length; i++) {
         let star = stars[i];
@@ -99,10 +99,10 @@ const ParticleBackground = () => {
         backgroundImage: 'radial-gradient(circle at 50% 100%, rgba(20, 10, 60, 0.5) 0%, transparent 70%), radial-gradient(circle at 20% 30%, rgba(10, 30, 80, 0.3) 0%, transparent 50%)'
       }}
     >
-      <div className="absolute inset-0 bg-[#030610]/40 mix-blend-multiply pointer-events-none" />
+      <div className="absolute inset-0 bg-[#030610]/70 pointer-events-none" />
       <canvas 
         ref={canvasRef} 
-        className="absolute inset-0 w-full h-full opacity-90 mix-blend-screen pointer-events-none"
+        className="absolute inset-0 w-full h-full opacity-60 pointer-events-none"
       />
     </div>
   );

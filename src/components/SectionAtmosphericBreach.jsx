@@ -14,15 +14,15 @@ export default function SectionAtmosphericBreach() {
         trigger: container.current,
         start: 'top bottom',
         end: 'bottom top',
-        scrub: 0.5
+        scrub: 0.8
       }
     });
 
     gsap.from('.breach-text', {
       y: 50,
       opacity: 0,
-      duration: 1.5,
-      stagger: 0.2,
+      duration: 1.8,
+      stagger: 0.25,
       scrollTrigger: {
         trigger: container.current,
         start: 'top 50%',
@@ -35,9 +35,9 @@ export default function SectionAtmosphericBreach() {
       gsap.from(card, {
         y: 50,
         opacity: 0,
-        duration: 1.2,
-        delay: i * 0.2,
-        ease: 'power3.out',
+        duration: 1.4,
+        delay: i * 0.15,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: container.current,
           start: 'top 40%',

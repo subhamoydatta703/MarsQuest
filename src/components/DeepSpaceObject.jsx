@@ -13,9 +13,9 @@ const Asteroid = () => {
 
   useFrame((state, delta) => {
     if (groupRef.current) {
-      groupRef.current.rotation.x += delta * 0.04;
-      groupRef.current.rotation.y += delta * 0.03;
-      groupRef.current.rotation.z += delta * 0.01;
+      groupRef.current.rotation.x += delta * 0.02;
+      groupRef.current.rotation.y += delta * 0.015;
+      groupRef.current.rotation.z += delta * 0.005;
     }
   });
 
@@ -32,7 +32,7 @@ const Asteroid = () => {
             color="#999999"
             roughness={1} 
             metalness={0.1}
-            distort={0.25}
+            distort={0.18}
             speed={0} 
           />
         </mesh>
@@ -47,7 +47,7 @@ const Asteroid = () => {
             color="#8a8a8a"
             roughness={1} 
             metalness={0.15}
-            distort={0.4}
+            distort={0.3}
             speed={0} 
           />
         </mesh>
@@ -62,7 +62,7 @@ const Asteroid = () => {
             color="#7a7a7a"
             roughness={1} 
             metalness={0.05}
-            distort={0.35}
+            distort={0.25}
             speed={0} 
           />
         </mesh>
@@ -77,7 +77,7 @@ const Asteroid = () => {
             color="#6a6a6a"
             roughness={1} 
             metalness={0.2}
-            distort={0.5}
+            distort={0.35}
             speed={0} 
           />
         </mesh>

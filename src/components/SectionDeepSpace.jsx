@@ -11,9 +11,9 @@ export default function SectionDeepSpace() {
       gsap.from(card, {
         y: 60,
         opacity: 0,
-        duration: 1.2,
-        delay: i * 0.15,
-        ease: 'power3.out',
+        duration: 1.4,
+        delay: i * 0.12,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: container.current,
           start: 'top 50%',

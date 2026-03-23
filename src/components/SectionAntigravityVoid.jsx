@@ -16,7 +16,7 @@ export default function SectionAntigravityVoid() {
       scrollTrigger: {
         trigger: container.current,
         pin: true,
-        scrub: 0.3,
+        scrub: 0.5,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         end: () => '+=' + scrollContainer.current.offsetWidth,
@@ -32,7 +32,7 @@ export default function SectionAntigravityVoid() {
         trigger: container.current,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 0.5,
+        scrub: 0.8,
         invalidateOnRefresh: true
       }
     });
@@ -41,9 +41,9 @@ export default function SectionAntigravityVoid() {
       gsap.from(card, {
         y: 40,
         opacity: 0,
-        duration: 1,
-        delay: 0.3,
-        ease: 'power3.out',
+        duration: 1.2,
+        delay: 0.2,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: card.closest('.void-panel'),
           start: 'left center',
