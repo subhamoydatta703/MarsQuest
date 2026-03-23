@@ -95,17 +95,17 @@ function App() {
     tl.to('.cinematic-rocket', { rotation: -180, x: '0vw', y: '-10vh', scale: 0.8, duration: 0.10, ease: 'power1.inOut' }, 0.38);
     
     // Phase 4: Asteroid Belt Dodge (0.48 - 0.60)
-    tl.to('.cinematic-rocket', { x: '-20vw', y: '-5vh', rotation: -210, scale: 0.75, duration: 0.06, ease: 'power2.out' }, 0.48);
-    tl.to('.cinematic-rocket', { x: '15vw', y: '5vh', rotation: -150, scale: 0.7, duration: 0.06, ease: 'power2.inOut' }, 0.54);
+    tl.to('.cinematic-rocket', { x: '-20vw', y: '-5vh', rotation: -210, scale: 0.75, duration: 0.06, ease: 'sine.inOut' }, 0.48);
+    tl.to('.cinematic-rocket', { x: '15vw', y: '0vh', rotation: -150, scale: 0.7, duration: 0.06, ease: 'sine.inOut' }, 0.54);
     
-    // Phase 5: Through the Void (0.60 - 0.75) — previously the dead zone
-    tl.to('.cinematic-rocket', { x: '5vw', y: '0vh', rotation: -180, scale: 0.75, duration: 0.05, ease: 'power1.inOut' }, 0.60);
-    tl.to('.cinematic-rocket', { x: '-5vw', y: '5vh', rotation: -175, scale: 0.7, duration: 0.05, ease: 'sine.inOut' }, 0.65);
-    tl.to('.cinematic-rocket', { x: '0vw', y: '10vh', rotation: -180, scale: 0.75, duration: 0.05, ease: 'sine.inOut' }, 0.70);
+    // Phase 5: Through the Void (0.60 - 0.75) — drifting smoothly alongside panels
+    tl.to('.cinematic-rocket', { x: '-15vw', y: '15vh', rotation: -190, scale: 0.85, duration: 0.05, ease: 'sine.inOut' }, 0.60);
+    tl.to('.cinematic-rocket', { x: '15vw', y: '5vh', rotation: -170, scale: 0.75, duration: 0.05, ease: 'sine.inOut' }, 0.65);
+    tl.to('.cinematic-rocket', { x: '0vw', y: '15vh', rotation: -180, scale: 0.8, duration: 0.05, ease: 'sine.inOut' }, 0.70);
 
     // Phase 6: Mars Approach & Descent (0.75 - 0.92)
-    tl.to('.cinematic-rocket', { rotation: 0, scale: 0.8, x: '0vw', y: '-5vh', duration: 0.08, ease: 'power2.inOut' }, 0.75);
-    tl.to('.cinematic-rocket', { y: '5vh', scale: 0.75, duration: 0.09, ease: 'sine.in' }, 0.83);
+    tl.to('.cinematic-rocket', { rotation: 0, scale: 0.85, x: '0vw', y: '5vh', duration: 0.08, ease: 'power2.inOut' }, 0.75);
+    tl.to('.cinematic-rocket', { y: '10vh', scale: 0.8, duration: 0.09, ease: 'sine.in' }, 0.83);
 
     const metrics = { dist: 0, vel: 11.2, days: 0, fuel: 100 };
     tl.to(metrics, {

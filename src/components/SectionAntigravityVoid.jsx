@@ -16,15 +16,9 @@ export default function SectionAntigravityVoid() {
       scrollTrigger: {
         trigger: container.current,
         pin: true,
-        scrub: 2,
+        scrub: 1.2,
         anticipatePin: 1,
         invalidateOnRefresh: true,
-        snap: {
-          snapTo: 1 / (sections.length - 1),
-          duration: { min: 0.2, max: 0.5 },
-          ease: 'power1.inOut',
-          inertia: false
-        },
         end: () => '+=' + scrollContainer.current.offsetWidth,
         onLeave: () => gsap.to(container.current, { autoAlpha: 0, duration: 0.2 }),
         onEnterBack: () => gsap.to(container.current, { autoAlpha: 1, duration: 0.2 })
@@ -38,7 +32,7 @@ export default function SectionAntigravityVoid() {
         trigger: container.current,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 2.5,
+        scrub: 1.2,
         invalidateOnRefresh: true
       }
     });
